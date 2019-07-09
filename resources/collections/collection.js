@@ -9,9 +9,6 @@ export default class Collection {
     this.fields = fields;
     this.model = yupParser(this.fields);
     this.schema = this.mapSchema(this.model);
-
-    console.log(this.fields);
-    console.log(this.model);
   }
 
   runner(level) {
@@ -36,23 +33,44 @@ export default class Collection {
     return entries;
   }
 
-  mapSchema(a, b = undefined) {
-    const schema = b;
+  mapSchema(a, b = null) {
+    let schema = yup;
 
     Object.keys(a).forEach((v) => {
-      let newLevel = false;
-
-      if (v !== 'shape' || v !== 'of') {
-        schema = yup[v].call(this, a[v]);
+      if (!b) {
+        if (v === 'object' || v === 'array') {
+          if (a[v] !== null) {
+            schema = schema[v].call(schema, a[v]);
+          } else {
+            schema = schema[v].call(schema);
+          }
+        } else if (v === 'shape' || v === 'of') {
+          schema = schema[v].call(schema, mapSchema(a[v], v));
+        } else {
+          if (a[v] !== null) {
+          } else {
+            schema = schema[v].call(schema);
+          }
+        }
       } else {
-        schema[v].call(this, this.mapSchema(a[v], {})) 
+        if (b === 'shape') {
+          if (schema === yup) schema = {};
+          
+          schema[v] = mapSchema(a[v]);
+        } else if (b === 'of') {
+          schema = mapSchema(a[v]);
+        }
       }
     });
-    
+
     return schema;
   }
 
-  // async validate(data) {
-  //   return this.schema.isValid(data);
-  // }
+  async validate(data) {
+    if (this.schema instanceof yup) {
+      let result = await this.schema.validate(data);
+    } else {
+      throw new Error('Unable to validate with a undefined model schema.');
+    }
+  }
 }
