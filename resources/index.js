@@ -1,11 +1,4 @@
 import Collections from './collections/index'
-/**
-EVENTS
-
-- Init "When the class are instanced"
-- Commit "When a new change on global data (collections)"
-
-**/
 
 class Hades {
   constructor(init) {
