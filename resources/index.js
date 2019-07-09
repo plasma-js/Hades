@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import Collections from './collections/index'
 
 class Hades {

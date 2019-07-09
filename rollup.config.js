@@ -33,7 +33,6 @@ export default [
       resolve(),
       commonjs(),
       babel(babelConfig),
-      minify(minifyConfig),
       uglify()
     ]
   }

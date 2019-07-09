@@ -45,7 +45,7 @@ export default class Collection {
             schema = schema[v].call(schema);
           }
         } else if (v === 'shape' || v === 'of') {
-          schema = schema[v].call(schema, mapSchema(a[v], v));
+          schema = schema[v].call(schema, this.mapSchema(a[v], v));
         } else {
           if (a[v] !== null) {
           } else {
@@ -56,9 +56,9 @@ export default class Collection {
         if (b === 'shape') {
           if (schema === yup) schema = {};
           
-          schema[v] = mapSchema(a[v]);
+          schema[v] = this.mapSchema(a[v]);
         } else if (b === 'of') {
-          schema = mapSchema(a[v]);
+          schema = this.mapSchema(a[v]);
         }
       }
     });
@@ -68,7 +68,8 @@ export default class Collection {
 
   async validate(data) {
     if (this.schema instanceof yup) {
-      let result = await this.schema.validate(data);
+      let result = this.schema.validate(data);
+      return result;
     } else {
       throw new Error('Unable to validate with a undefined model schema.');
     }
