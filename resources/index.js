@@ -3,7 +3,7 @@ import Collections from './collections/index'
 
 class Hades {
   constructor(init) {
-		this.collections = new Collections;
+		this.collections = new Collections();
     this.events = [];
     this.history = [];
     this.getters = [];
