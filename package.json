@@ -1,6 +1,6 @@
 {
   "name": "@plasma-js/hades",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "A standalone event handler and data manager.",
   "main": "index.js",
   "scripts": {
@@ -27,18 +27,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plasma-js/Plasma.git"
+    "url": "git+https://github.com/plasma-js/Hades.git"
   },
   "keywords": [
-    "plasma",
+    "hades",
+    "hadesjs"
     "plasmajs",
-    "micro-framework",
-    "framework"
+    "orm",
+    "pubsub",
+    "data-manager"
   ],
   "author": "PlasmaJS",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/plasma-js/Plasma/issues"
+    "url": "https://github.com/plasma-js/Hades/issues"
   },
-  "homepage": "https://github.com/plasma-js/Plasma#readme"
+  "homepage": "https://github.com/plasma-js/Hades#readme"
 }
