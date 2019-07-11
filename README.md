@@ -79,17 +79,17 @@ let validEntry = await hades.collections.events.validate(dataExemple);
 You can import the data managing only (Collections), like in the exemple bellow:
 
 ```javascript
-// const Hades = require('hades').Collections;
-import { Collections } as Hades from 'hades'; // Collections data class
+// const Collections = require('hades').Collections;
+import { Collections } from 'hades'; // Collections data class
 
-const database = new Hades();
+const database = new Collections();
 ```
 
 Or only the pubsub class:
 
 ```javascript
 // const Events = require('hades').Events;
-import { Events } as Events from 'hades'; // Collections data class
+import { Events } from 'hades'; // Collections data class
 
 const hades = new Events();
 
