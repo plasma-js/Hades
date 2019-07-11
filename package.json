@@ -1,10 +1,11 @@
 {
   "name": "@plasma-js/hades",
-  "version": "0.4.0",
-  "description": "A micro web framework",
+  "version": "0.4.5",
+  "description": "A standalone event handler and data manager.",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/rollup -c"
+    "build": "./node_modules/.bin/rollup -c",
+    "test": "./node_modules/.bin/mocha ./tests/index --allow-uncaught false -c -R spec"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -13,13 +14,16 @@
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.5.2",
+    "assert": "^2.0.0",
     "cross-origin": "^1.0.6",
+    "mocha": "^6.1.4",
     "rollup": "^1.16.6",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-babel-minify": "^9.0.0",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup-plugin-uglify": "^6.0.2",
+    "unit.js": "^2.1.0"
   },
   "repository": {
     "type": "git",

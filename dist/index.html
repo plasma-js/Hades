@@ -1,12 +1,110 @@
+<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>Hades</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="./hades.min.js"></script>
   </head>
   <body>
-    <h1>Hades.js</h1>
+    <div id="app" class="section">
+      <div class="container">
+        <h1 class="title">Hades.js</h1>
+        <hr>
+        <div class="columns is-multiline is-mobile">
+          <div class="column">
+            <div id="fdata" v-if="list.length > 0" v-for="data in list">
+              <div class="box" :id="data._id">
+                <article class="media">
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <strong>{{ data.name }}</strong> <small>@{{ data.nick }}</small>
+                        <br>
+                        {{ data.message }}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+
+            <form id="ftest" action="#" @submit="submit">
+              <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Name" v-model="name">
+                </div>
+                <p v-if="!name" class="help is-danger">Required!</p>
+              </div>
+
+              <div class="field">
+                <label class="label">Nick</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Name" v-model="nick">
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                  <textarea class="textarea" placeholder="Textarea" v-model="message"></textarea>
+                </div>
+                <p v-if="!message" class="help is-danger">Required!</p>
+              </div>
+
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-link" type="submit">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
-  <script src="./hades.min.js"></script>
   <script>
-    // Write test code here
+    const database = new Hades();
+
+    database.collections.new('exemple', {
+      name: 'string|required',
+      nick: 'string',
+      message: 'string'
+    });
+
+    const exempleCollection = database.collections.exemple;
+    const app = new Vue({
+      el: '#app',
+      data: {
+        list: [],
+        name: '',
+        nick: '',
+        message: ''
+      },
+      methods: {
+        submit: function(e) {
+          e.preventDefault();
+          let { name, nick, message } = this;
+          let data = { name, nick, message };
+
+          if (exempleCollection.add(data)) {
+            this.list = exempleCollection.data;
+            this.clear();
+          }
+        },
+        clear: function() {
+          this.$data.name = "";
+          this.$data.nick = "";
+          this.$data.message = "";
+        },
+      }
+    });
   </script>
 </html>
