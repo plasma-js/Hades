@@ -1,14 +1,29 @@
+import Event from '../events/index';
 import yupParser from '../utils/yupParser';
+import ValidationError from '../utils/validationError';
 import * as yup from 'yup';
 
-export default class Collection {
+export default class Collection extends Event {
   constructor(fields) {
+    super();
     if (!fields) throw new Error('The second param \'fields\' is obrigatory!');
 
     this.data = [];
     this.fields = fields;
     this.model = yupParser(this.fields);
     this.schema = this.mapSchema(this.model);
+  }
+
+  async add(data) {
+    try {
+      await this.validate(data);
+      data._id = Date.now();
+      this.data.push(data);
+
+      return this.data[this.data.length];
+    } catch (err) {
+      throw new ValidationError(err);
+    };
   }
 
   runner(level) {
@@ -67,9 +82,8 @@ export default class Collection {
   }
 
   async validate(data) {
-    if (this.schema instanceof yup) {
-      let result = this.schema.validate(data);
-      return result;
+    if (typeof this.schema.validate === "function") {
+      return this.schema.validate(data);
     } else {
       throw new Error('Unable to validate with a undefined model schema.');
     }
