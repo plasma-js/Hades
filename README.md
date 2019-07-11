@@ -89,7 +89,7 @@ Or only the pubsub class:
 
 ```javascript
 // const Events = require('hades').Events;
-import { Events } from 'hades'; // Collections data class
+import { Events } from 'hades'; // Events data class
 
 const hades = new Events();
 
