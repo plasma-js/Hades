@@ -55,14 +55,14 @@ const dataExemple = {
   location: 'Indie Land',
   tickets: [
     {
-      lote: '1',
-      price: '600',
-      avaiable: '600'
+      lote: 1,
+      price: 600.00,
+      avaiable: 600
     },
     {
-      lote: '2',
-      price: '700',
-      avaiable: '1000'
+      lote: 2,
+      price: 700.00,
+      avaiable: 1000
     }
   ]
 };
