@@ -6,7 +6,7 @@ import * as yup from 'yup';
 export default class Collection extends Event {
   constructor(fields) {
     super();
-    if (!fields) throw new Error('The second param \'fields\' is obrigatory!');
+    if (!fields) throw new Error('Constructor invalid! The \'fields\' param is null or undefined!');
 
     this.data = [];
     this.fields = fields;
@@ -85,7 +85,7 @@ export default class Collection extends Event {
     if (typeof this.schema.validate === "function") {
       return this.schema.validate(data);
     } else {
-      throw new Error('Unable to validate with a undefined model schema.');
+      throw new Error('Unable to validate without a model schema.');
     }
   }
 }

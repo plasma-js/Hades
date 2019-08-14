@@ -1,8 +1,8 @@
 {
   "name": "@plasma-js/hades",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "description": "A standalone event handler and data manager.",
-  "main": "index.js",
+  "main": "dist/index.min.js",
   "scripts": {
     "build": "./node_modules/.bin/rollup -c",
     "test": "./node_modules/.bin/mocha ./tests/index --allow-uncaught false -c -R spec"
