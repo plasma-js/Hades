@@ -8,10 +8,11 @@ export default class Collection extends Event {
     super();
     if (!fields) throw new Error('Constructor invalid! The \'fields\' param is null or undefined!');
 
-    this.data = [];
+    this._id = Date.now();
     this.fields = fields;
     this.model = yupParser(this.fields);
     this.schema = this.mapSchema(this.model);
+    this.data = (this.model["object"] !== undefined) ? {} : [];
   }
 
   async add(data) {

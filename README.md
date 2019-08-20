@@ -81,8 +81,6 @@ You can import the data managing only (Collections), like in the exemple bellow:
 ```javascript
 // const Collections = require('hades').Collections;
 import { Collections } from 'hades'; // Collections data class
-
-const database = new Collections();
 ```
 
 Or only the pubsub class:
@@ -90,10 +88,4 @@ Or only the pubsub class:
 ```javascript
 // const Events = require('hades').Events;
 import { Events } from 'hades'; // Events data class
-
-const hades = new Events();
-
-hades.on(eventName, handler);
-
-hades.publish(eventName, handlerPayload);
 ```

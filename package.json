@@ -1,6 +1,6 @@
 {
   "name": "@plasma-js/hades",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A standalone event handler and data manager.",
   "main": "dist/index.min.js",
   "scripts": {
